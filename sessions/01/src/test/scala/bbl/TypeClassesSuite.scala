@@ -4,7 +4,7 @@ import cats.syntax.option._
 
 class TypeClassesSuite extends AbstractSuite {
 
-  test("Using Scala, we can define type-classes") {
+  test("Using vanilla Scala, we can define type-classes") {
     type Sound = String
 
     trait Animal[T] {
@@ -63,8 +63,6 @@ class TypeClassesSuite extends AbstractSuite {
 
     }
 
-    object implicits extends AnimalInstances with AnimalSyntax
-
     object Animal {
 
       // Factory methods
@@ -83,7 +81,8 @@ class TypeClassesSuite extends AbstractSuite {
 
     }
 
-    import implicits._
+    import instances.animal._
+    import syntax.animal._
 
     case class Dog(name: String)
 
@@ -104,5 +103,36 @@ class TypeClassesSuite extends AbstractSuite {
     info(s"dogSounds={}", dogSounds)
     assert(dogSounds == List(snoopy.some, dingo.some, none[Dog]).sound())
   }
+
+  /* test("Using Simulacrum's macros, we can reduce boilerplate") {
+    import simulacrum._
+
+    type Sound = String
+
+    @typeclass trait Animal[T] {
+
+      @op("sound") def sound(t: T): Sound
+
+    }
+
+    case class Dog(name: String)
+
+    implicit val animalForDog: Animal[Dog] = { dog =>
+      s"Woof, woof! I'm ${dog.name}. "
+    }
+
+    object syntax {
+
+      object animal extends Animal.ToAnimalOps
+
+    }
+
+    import syntax.animal._
+
+    val snoopy = Dog("Snoopy")
+
+    assert(Animal[Dog].sound(snoopy) == snoopy.sound)
+
+  } */
 
 }

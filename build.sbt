@@ -23,7 +23,8 @@ lazy val commonSettings = Seq(
   libraryDependencies ++= Dependencies.slf4j,
   libraryDependencies ++= Dependencies.http4s,
   libraryDependencies ++= Dependencies.munit map (_ % Test),
-  libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value
+  libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
+  libraryDependencies += "org.typelevel" %% "simulacrum" % "1.0.0"
 )
 
 lazy val `session-01` = (project in file("sessions/01"))
