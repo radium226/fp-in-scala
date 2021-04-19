@@ -16,6 +16,7 @@ ThisBuild / scalacOptions ++= Seq(
 ThisBuild / testFrameworks += new TestFramework("munit.Framework")
 
 lazy val commonSettings = Seq(
+  addCompilerPlugin("org.typelevel" % "kind-projector" % "0.11.3" cross CrossVersion.full),
   resolvers += Resolver.mavenLocal,
   libraryDependencies ++= Dependencies.cats,
   libraryDependencies ++= Dependencies.fs2,
@@ -31,5 +32,9 @@ lazy val `session-01` = (project in file("sessions/01"))
   .settings(commonSettings: _*)
   .settings(name := "session-01")
 
+lazy val `session-02` = (project in file("sessions/02"))
+  .settings(commonSettings: _*)
+  .settings(name := "session-02")
+
 lazy val root = (project in file("."))
-  .aggregate(`session-01`)
+  .aggregate(`session-01`, `session-02`)
