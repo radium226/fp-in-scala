@@ -6,5 +6,6 @@ package object instances {
 
   object maybe extends MaybeInstances
   object reader extends ReaderInstances
+  object io extends IOInstances
 
 }

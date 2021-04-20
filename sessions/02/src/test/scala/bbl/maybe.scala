@@ -1,6 +1,7 @@
 package bbl
 
-import fp._
+import bbl.fp._
+
 
 class MaybeSuite extends AbstractSuite {
 
