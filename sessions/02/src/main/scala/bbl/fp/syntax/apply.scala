@@ -10,6 +10,10 @@ trait ApplySyntax {
       F.ap(fa)(fab)
     }
 
+    def product[B](fb: F[B]): F[(A, B)] = {
+      F.product(fa, fb)
+    }
+
   }
 
 }

@@ -40,10 +40,10 @@ class ReaderSuite extends AbstractSuite {
 
     val helpProgram = "Welcome to... Jurassic Park! ".pure[Program]
 
-    val program = for {
-      hello <- helloProgram
-      help <- helpProgram
-    } yield s"${hello}\n${help}"
+    val program = (helloProgram product helpProgram)
+      .map({ case (hello, help) =>
+        s"${hello}\n${help}"
+      })
 
     val outcome = program.run(Config("Ian", "Malcom"))
     println(outcome)
