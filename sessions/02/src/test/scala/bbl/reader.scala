@@ -36,23 +36,22 @@ class ReaderSuite extends AbstractSuite {
     val helloProgram: Reader[Config, String] = for {
       firstName <- Program({ config => config.firstName })
       lastName <- Config.lastName
-    } yield s"Hello, ${firstName} ${lastName}! "
+    } yield s"Hello, ${firstName} ${lastName}!"
 
-    val helpProgram = "Welcome to... Jurassic Park! ".pure[Program]
+    val helpProgram = "Welcome to... Jurassic Park!".pure[Program]
 
-    val program: Program[String] = (helpProgram product helloProgram)
+    val program: Program[String] = (helloProgram product helpProgram)
       .map({ case (hello, help) =>
         s"${hello}\n${help}"
       })
 
-    val program: Program[String] = for {
+    /* val program: Program[String] = for {
       hello <- helloProgram
       help <- helpProgram
-    } yield s"${hello}\n${help}"
+    } yield s"${hello}\n${help}" */
 
     val outcome = program.run(Config("Ian", "Malcom"))
-    println(outcome)
-    assertEquals(outcome, s"Hello, Ian Malcom! \nWelcome to... Jurassic Park! ")
+    assertEquals(outcome, "Hello, Ian Malcom!\nWelcome to... Jurassic Park!")
   }
 
 }
