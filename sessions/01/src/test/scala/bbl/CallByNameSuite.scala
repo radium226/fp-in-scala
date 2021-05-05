@@ -28,6 +28,7 @@ class CallByNameSuite extends AbstractSuite {
     printSoundTwoTimesByValue(produceSound())
     assert(steps == List("Producing", "Produced", "Printing", "Printed"))
 
+
     steps.clear()
 
     def printSoundTwoTimesByName(sound: => String): Unit = {

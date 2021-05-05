@@ -62,7 +62,8 @@ class ForComprehensionSuite extends AbstractSuite {
       for {
           user <- Library.lookUpUserByID(userID)
           books <- Library.lookUpBooksByUser(user)
-      } yield books.length
+          bookCount = books.length
+      } yield bookCount
     }
     info(s"forComprehensionExpr={}", forComprehensionExpr)
 

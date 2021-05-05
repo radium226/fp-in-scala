@@ -18,7 +18,7 @@ class MaybeSuite extends AbstractSuite {
   test("This for-comprehension should return nothing[Credentials]") {
     val credentialsMaybe = for {
       login <- "Login".just
-      password <- nothing[String]
+      password <- nothing[Credentials.Password]
     } yield Credentials(login, password)
 
     assertEquals(credentialsMaybe, nothing[Credentials])

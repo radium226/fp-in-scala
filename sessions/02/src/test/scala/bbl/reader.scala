@@ -12,7 +12,7 @@ class ReaderSuite extends AbstractSuite {
     type LastName = String
 
     def firstName: Program[FirstName] = Program(_.firstName)
-    def lastName: Program[FirstName] = Program(_.lastName)
+    def lastName: Program[LastName] = Program(_.lastName)
 
   }
 
@@ -33,17 +33,22 @@ class ReaderSuite extends AbstractSuite {
   }
 
   test("Reader should work") {
-    val helloProgram = for {
-      firstName <- Config.firstName
+    val helloProgram: Reader[Config, String] = for {
+      firstName <- Program({ config => config.firstName })
       lastName <- Config.lastName
     } yield s"Hello, ${firstName} ${lastName}! "
 
     val helpProgram = "Welcome to... Jurassic Park! ".pure[Program]
 
-    val program = (helloProgram product helpProgram)
+    val program: Program[String] = (helpProgram product helloProgram)
       .map({ case (hello, help) =>
         s"${hello}\n${help}"
       })
+
+    val program: Program[String] = for {
+      hello <- helloProgram
+      help <- helpProgram
+    } yield s"${hello}\n${help}"
 
     val outcome = program.run(Config("Ian", "Malcom"))
     println(outcome)

@@ -1,6 +1,26 @@
 package bbl
 
-import scala.reflect.runtime.universe
+object ImplicitsSuite {
+
+  trait Loud[T] {
+
+    def sound(t: T): String
+
+  }
+
+  object Loud {
+
+    /* implicit def loudForAny[T <: AnyRef]: Loud[T] = new Loud[T] {
+
+      override def sound(t: T): String = {
+        s"..."
+      }
+
+    } */
+
+  }
+
+}
 
 class ImplicitsSuite extends AbstractSuite {
 
@@ -23,9 +43,12 @@ class ImplicitsSuite extends AbstractSuite {
         s"Woof! I'm ${dog.name}."
       }
 
+      override def toString: String = "TOTOTOTO"
+
     }
 
     val snoopy = Dog("Snoopy")
+    //println(snoopy.toString)
     assert(snoopy.bark().contains("Snoopy"))
   }
 
@@ -42,26 +65,18 @@ class ImplicitsSuite extends AbstractSuite {
   }
 
   test("Implicits can be used to define type classes") {
-    trait Loud[T] {
 
-      def sound(t: T): String
+    import ImplicitsSuite._
 
-    }
+    case class Cat(name: String)
 
-    object Loud {
+    class LoudForCat extends Loud[Cat] {
 
-      implicit def loudForAny[T <: AnyRef]: Loud[T] = new Loud[T] {
-
-        override def sound(t: T): String = {
-          s"..."
-        }
-
+      override def sound(cat: Cat): String = {
+        s"Meow! I'm ${cat.name}."
       }
 
     }
-
-
-    case class Cat(name: String)
 
     object Cat {
 
@@ -85,7 +100,7 @@ class ImplicitsSuite extends AbstractSuite {
 
     }
 
-    case class Fish(name: String)
+    import animals._
 
 
     val snoopySound = implicitly[Loud[Dog]].sound(Dog("Snoopy"))
@@ -96,9 +111,9 @@ class ImplicitsSuite extends AbstractSuite {
     info("felixSound={}", felixSound)
     assert(felixSound.contains("Felix"))
 
-    val nemoSound = implicitly[Loud[Fish]].sound(Fish("Nemo"))
+    /* val nemoSound = implicitly[Loud[Fish]].sound(Fish("Nemo"))
     info("nemoSound={}", nemoSound)
-    assert(nemoSound.contains("..."))
+    assert(nemoSound.contains("...")) */
   }
 
 }

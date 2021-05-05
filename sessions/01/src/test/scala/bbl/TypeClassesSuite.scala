@@ -24,7 +24,11 @@ class TypeClassesSuite extends AbstractSuite {
     trait AnimalOptionInstances {
 
       implicit def animalForOption[T](implicit animalForT: Animal[T]): Animal[Option[T]] = {
-        Animal.instance[Option[T]](_.fold("None can't make any sound! ")(animalForT.sound))
+        Animal.instance[Option[T]]({ optionOfT =>
+          optionOfT.fold("None can't make any sound! ")({ t =>
+            animalForT.sound(t)
+          })
+        })
       }
 
     }
@@ -74,6 +78,11 @@ class TypeClassesSuite extends AbstractSuite {
 
       }
 
+      //implicitly[Animal[Dog]].sound(Dog("toto"))
+      // val toto = Dog("toto")
+      // Animal[Dog] -> Animal[Dog].sound(toto)
+      // toto.sound
+
       // Summon method
       def apply[T](implicit instance: Animal[T]): Animal[T] = {
         instance
@@ -86,7 +95,9 @@ class TypeClassesSuite extends AbstractSuite {
 
     case class Dog(name: String)
 
-    implicit val animalForDog: Animal[Dog] = Animal.instance({ dog => s"Woof, woof! I'm ${dog.name}. "})
+    implicit val animalForDog: Animal[Dog] = Animal.instance({ dog =>
+      s"Woof, woof! I'm ${dog.name}. "
+    })
 
     case class Fish(color: String)
 

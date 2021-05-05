@@ -18,18 +18,20 @@ ThisBuild / testFrameworks += new TestFramework("munit.Framework")
 lazy val commonSettings = Seq(
   addCompilerPlugin("org.typelevel" % "kind-projector" % "0.11.3" cross CrossVersion.full),
   resolvers += Resolver.mavenLocal,
-  libraryDependencies ++= Dependencies.cats,
-  libraryDependencies ++= Dependencies.fs2,
-  libraryDependencies ++= Dependencies.decline,
-  libraryDependencies ++= Dependencies.slf4j,
-  libraryDependencies ++= Dependencies.http4s,
   libraryDependencies ++= Dependencies.munit map (_ % Test),
-  libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
-  libraryDependencies += "org.typelevel" %% "simulacrum" % "1.0.0"
 )
 
 lazy val `session-01` = (project in file("sessions/01"))
   .settings(commonSettings: _*)
+  .settings(
+    libraryDependencies ++= Dependencies.cats,
+    libraryDependencies ++= Dependencies.fs2,
+    libraryDependencies ++= Dependencies.decline,
+    libraryDependencies ++= Dependencies.slf4j,
+    libraryDependencies ++= Dependencies.http4s,
+    libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
+    libraryDependencies += "org.typelevel" %% "simulacrum" % "1.0.0"
+  )
   .settings(name := "session-01")
 
 lazy val `session-02` = (project in file("sessions/02"))

@@ -137,6 +137,7 @@ class CaseClassesSuite extends AbstractSuite {
   test("Case classes support pattern-matching") {
     val Dog(name, _) = snoopy
     assert(name == "Snoopy")
+
   }
 
   test("It should be possible to mimic a case class manually") {
@@ -195,7 +196,7 @@ class CaseClassesSuite extends AbstractSuite {
 
       override def toString(): String = {
         // Through ScalaRunTime._toString
-        productIterator.mkString(productPrefix + "(", ",", ")")
+        productIterator.mkString(s"${productPrefix}(", ",", ")")
       }
 
     }
