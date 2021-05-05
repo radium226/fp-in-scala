@@ -1,3 +1,3 @@
-package bbl.fp.data
+package bbl.data
 
 case class Reader[E, T](run: E => T)

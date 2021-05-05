@@ -1,4 +1,4 @@
-package bbl.fp
+package bbl
 
 trait Monad[F[_]] extends Applicative[F] with FlatMap[F] {
 

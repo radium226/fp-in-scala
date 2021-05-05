@@ -1,6 +1,6 @@
-package bbl.fp
-package syntax
+package bbl.syntax
 
+import bbl.Functor
 
 trait FunctorSyntax {
 

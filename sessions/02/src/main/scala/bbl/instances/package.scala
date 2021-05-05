@@ -1,4 +1,4 @@
-package bbl.fp
+package bbl
 
 package object instances {
 

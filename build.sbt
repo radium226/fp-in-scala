@@ -26,9 +26,6 @@ lazy val `session-01` = (project in file("sessions/01"))
   .settings(
     libraryDependencies ++= Dependencies.cats,
     libraryDependencies ++= Dependencies.fs2,
-    libraryDependencies ++= Dependencies.decline,
-    libraryDependencies ++= Dependencies.slf4j,
-    libraryDependencies ++= Dependencies.http4s,
     libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
     libraryDependencies += "org.typelevel" %% "simulacrum" % "1.0.0"
   )
@@ -38,5 +35,17 @@ lazy val `session-02` = (project in file("sessions/02"))
   .settings(commonSettings: _*)
   .settings(name := "session-02")
 
+lazy val `session-03` = (project in file("sessions/03"))
+  .settings(commonSettings: _*)
+  .settings(name := "session-03")
+  .settings(
+    libraryDependencies ++= Dependencies.cats,
+    libraryDependencies ++= Dependencies.fs2,
+  )
+
 lazy val root = (project in file("."))
-  .aggregate(`session-01`, `session-02`)
+  .aggregate(
+    `session-01`,
+    `session-02`,
+    `session-03`
+  )

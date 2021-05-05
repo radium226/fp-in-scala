@@ -1,5 +1,4 @@
-package bbl.fp
-package syntax
+package bbl.syntax
 
 import bbl.fp.data.Maybe
 

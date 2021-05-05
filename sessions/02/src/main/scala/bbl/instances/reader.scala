@@ -1,5 +1,4 @@
-package bbl.fp
-package instances
+package bbl.instances
 
 import bbl.fp.data.Reader
 

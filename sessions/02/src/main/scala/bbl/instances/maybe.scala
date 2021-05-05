@@ -1,6 +1,6 @@
-package bbl.fp
-package instances
+package bbl.instances
 
+import bbl.Monad
 import bbl.fp.data.Maybe
 
 trait MaybeInstances {

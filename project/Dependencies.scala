@@ -10,14 +10,14 @@ object Dependencies {
 
   lazy val munit = Seq(
     "org.scalameta" %% "munit" % "0.7.22",
-    "org.typelevel" %% "munit-cats-effect-2" % "0.13.1"
+    "org.typelevel" %% "munit-cats-effect-3" % "1.0.2"
   )
 
   lazy val cats = Seq(
-    "org.typelevel" %% "cats-core" % "2.4.2",
-    "org.typelevel" %% "cats-effect" % "2.3.3",
-    "org.typelevel" %% "kittens" % "2.2.1",
-    "org.typelevel" %% "mouse" % "0.26.2"
+    "org.typelevel" %% "cats-core" % "2.6.0",
+    "org.typelevel" %% "cats-effect" % "3.1.0",
+    "org.typelevel" %% "kittens" % "2.2.2",
+    "org.typelevel" %% "mouse" % "1.0.2"
   )
 
   lazy val catsParse = Seq(
@@ -25,8 +25,8 @@ object Dependencies {
   )
 
   lazy val fs2 = Seq(
-    "co.fs2" %% "fs2-core" % "2.5.3",
-    "co.fs2" %% "fs2-io" % "2.5.3"
+    "co.fs2" %% "fs2-core" % "3.0.2",
+    "co.fs2" %% "fs2-io" % "3.0.2"
   )
 
   lazy val selenium = Seq(
@@ -45,7 +45,7 @@ object Dependencies {
   ) map(_ % Versions.http4s)
 
   lazy val decline = Seq(
-    "com.monovore" %% "decline" % "1.3.0"
+    "com.monovore" %% "decline" % "2.0.0"
   )
 
   lazy val azure = Seq(

@@ -1,5 +1,4 @@
-package bbl.fp
-package data
+package bbl.data
 
 sealed trait Maybe[+T]
 

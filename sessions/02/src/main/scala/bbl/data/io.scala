@@ -1,4 +1,4 @@
-package bbl.fp.data
+package bbl.data
 
 import java.util.Scanner
 

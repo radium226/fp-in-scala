@@ -1,4 +1,4 @@
-package bbl.fp
+package bbl
 
 trait Apply[F[_]] extends Functor[F] {
 

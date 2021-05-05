@@ -1,5 +1,4 @@
-package bbl.fp
-package instances
+package bbl.instances
 
 trait AllInstances extends MaybeInstances
                       with ReaderInstances

@@ -1,7 +1,7 @@
-package bbl.fp
-package instances
+package bbl.instances
 
-import bbl.fp.data.IO
+import bbl.Monad
+import bbl.data.IO
 
 trait IOInstances {
 

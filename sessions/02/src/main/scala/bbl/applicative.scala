@@ -1,4 +1,4 @@
-package bbl.fp
+package bbl
 
 trait Applicative[F[_]] extends Apply[F] {
 
